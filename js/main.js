@@ -34,7 +34,7 @@ createBoard();
 $(".card").click(function() {
   $(this).addClass("flipped");
   clickz++;
-  $(".counter").text(clickz);
+  $(".counter").text("clicks:" +clickz);
   pair.push($(this).text());
   count++;
 
@@ -47,7 +47,7 @@ $(".card").click(function() {
       //alert("match");
       $("." + pair[0]).addClass("matched");
       match++;
-	  $(".matches").text(match);
+	  $(".matches").text("matches:" + match);
       $(".card").removeClass("noClick");
       if (match == contentLength / 2) {
         $(".card").addClass("winner");
@@ -79,7 +79,27 @@ $(".card").click(function() {
 //$(".counter").click($(".card").css("fontFamily":"aliens"));
 
 
-$(".change").click(function(){
+$(".aliens").click(function(){
 
   $(".card").css("fontFamily","aliens");
  }); 
+
+ $(".monsters").click(function(){
+
+  $(".card").css("fontFamily","monsters");
+ }); 
+
+ 
+ $(".space").click(function(){
+
+  $(".card").css("fontFamily","space");
+ }); 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

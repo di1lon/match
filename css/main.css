@@ -105,6 +105,15 @@ textarea {
 	src: url(../fonts/aliendude.ttf);
 }
 
+
+
+@font-face {
+    font-family: space;
+	src: url(../fonts/ovnidcoxy.ttf);
+}
+
+ovnidcoxy
+
 body {
 background-color:white;
 
@@ -126,6 +135,7 @@ background-color:white;
   transition-duration:0.5s;
   margin:10px;
   box-shadow: 5px 5px 5px #eee;
+  border-radius:5px;
 }
 
 .flipped {
@@ -156,23 +166,26 @@ background-color:white;
  }
  
 .counter, .matches {
-	color:#000;
-	font-size:2em;
+
 	display:block;
-	font-family: "Times New Roman", Times, serif;
+
 	float:left;
 	margin-right:20px;
 
  }
 
-.change {
-color:#000;
+ .header {
+ 	font-family: "Times New Roman", Times, serif;
+		color:#555;
 	font-size:2em;
-	display:block;
-	font-family: "Times New Roman", Times, serif;
-	float:left;
-}
  
+ }
+ 
+.header div {
+	margin-right:40px;
+
+} 
+
  .winner {
 	background-color:green;
  }
