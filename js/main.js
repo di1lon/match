@@ -17,7 +17,7 @@ function createBoard() {
   //need fucntion to dynamically create content array depending on desired number of blocks
 
 var content = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-//var content = ["a", "a", "b", "b", "c", "c", "d", "d", "e", "e", "f", "f", "g", "g", "h", "h"];
+var content = ["a", "a", "b", "b", "c", "c", "d", "d", "e", "e", "f", "f", "g", "g", "h", "h"];
 var contentLength = content.length;
 
 
@@ -87,9 +87,9 @@ createBoard();
 
 function reset() {
   $(".board").empty();
-  //count = 0;
-  //clickz = 0;
-  //match = 0;
+  count = 0;
+  clickz = 0;
+  match = 0;
   createBoard();
 
 }

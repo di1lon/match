@@ -97,19 +97,19 @@ textarea {
 
 @font-face {
     font-family: monsters;
-	src: url(../fonts/Octo98.ttf);
+	src: url(../fonts/diadlmb.ttf);
 }
 
 @font-face {
     font-family: aliens;
-	src: url(../fonts/aliendude.ttf);
+	src: url(../fonts/otherspace.ttf);
 }
 
 
 
 @font-face {
     font-family: space;
-	src: url(../fonts/ovnidcoxy.ttf);
+	src: url(../fonts/silbt.ttf);
 }
 
 
@@ -122,10 +122,10 @@ background-color:white;
 .card {
   float: left;
   text-align: center;
-  width: 13vh;
-  height:13vh;
+  width: 13vw;
+  height:13vw;
   color: transparent;
-  font-size: 10vh;
+  font-size: 10vw;
   background-color:#e1e1e1;
   cursor: pointer;
   transition-property:color;
@@ -144,7 +144,7 @@ background-color:white;
 }
 
 .matched {
-  background-color: gold;
+  background-color:aqua;
   color: black;
   pointer-events: none;
   transition-property:background-color;
