@@ -112,11 +112,9 @@ textarea {
 	src: url(../fonts/ovnidcoxy.ttf);
 }
 
-ovnidcoxy
 
 body {
 background-color:white;
-
 }
 
 
@@ -124,16 +122,15 @@ background-color:white;
 .card {
   float: left;
   text-align: center;
-  width: 100px;
-  height: 100px;
+  width: 13vh;
+  height:13vh;
   color: transparent;
-  font-size: 5em;
-  line-height: 100px;
+  font-size: 10vh;
   background-color:#e1e1e1;
   cursor: pointer;
   transition-property:color;
   transition-duration:0.5s;
-  margin:10px;
+  margin:0.5vw;
   box-shadow: 5px 5px 5px #eee;
   border-radius:5px;
 }
@@ -147,7 +144,7 @@ background-color:white;
 }
 
 .matched {
-  background-color: orange;
+  background-color: gold;
   color: black;
   pointer-events: none;
   transition-property:background-color;
@@ -168,9 +165,8 @@ background-color:white;
 .counter, .matches {
 
 	display:block;
-
-	float:left;
 	margin-right:20px;
+	float:right;
 
  }
 
@@ -178,6 +174,7 @@ background-color:white;
  	font-family: "Times New Roman", Times, serif;
 		color:#555;
 	font-size:2em;
+
  
  }
  
@@ -187,9 +184,19 @@ background-color:white;
 } 
 
  .winner {
-	background-color:green;
+	background-color:GreenYellow;
  }
 
+ .header a:hover{
+ 	background-color: greenyellow;
+ }
+
+ .header a {
+ 	margin-right:0px;
+
+padding:10px; 	cursor:pointer;
+ 	background-color:ghostwhite;
+ }
 
 
 
