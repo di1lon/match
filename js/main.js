@@ -2,34 +2,52 @@ var count = 0;
 var clickz = 0;
 var pair = [];
 var match = 0;
+var vault = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
+//var content = ["a", "a", "b", "b", "c", "c", "d", "d", "e", "e", "f", "f", "g", "g", "h", "h"];
 var audio = new Audio('snd/prox.wav');
 var audio2 = new Audio('snd/beverly_computer.wav');
 
 
-
-
-
-
-
 function createBoard() {
 
-  //need fucntion to dynamically create content array depending on desired number of blocks
+  var pairs = 8;
+  var content = [];
 
-var content = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var content = ["a", "a", "b", "b", "c", "c", "d", "d", "e", "e", "f", "f", "g", "g", "h", "h"];
-var contentLength = content.length;
+  //this function creates the content for the cards
+  function createCards() {
+    console.log("creating cards");
+    for (i = 0; i < pairs; i++) {
+    var position = Math.floor(Math.random() * vault.length);
+    var vaultLetter = vault.splice(position, 1);
+    content.push(vaultLetter);
+    content.push(vaultLetter);
+    console.log(content.toString());
+    }
 
-
-  for (i = 0; i < contentLength; i++) {
-
-    var position = Math.floor(Math.random() * content.length);
-
-    var letter = content.splice(position, 1);
-
-    $("<div class=\"card " + letter + "\">" + letter + "</div>").appendTo(".board");
 
   }
+
+  createCards();
+
+
+  //this function adds the cards to the board
+  function addCards() {
+
+     for (i = 0; i < pairs*2; i++) {
+
+      var position = Math.floor(Math.random() * content.length);
+
+      var letter = content.splice(position, 1);
+
+      $("<div class=\"card " + letter + "\">" + letter + "</div>").appendTo(".board");
+
+    }
+
+  }
+
+  addCards();
+
 
   $(".card").click(function() {
   $(this).addClass("flipped");
@@ -50,7 +68,7 @@ var contentLength = content.length;
       match++;
     $(".matches").text("matches:" + match);
       $(".card").removeClass("noClick");
-      if (match == contentLength / 2) {
+      if (match == pairs) {
         $(".card").addClass("winner");
         audio2.play();
 
