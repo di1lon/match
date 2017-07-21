@@ -1,110 +1,107 @@
 var count = 0;
 var clickz = 0;
 var pair = [];
+var pairs = 4;
 var match = 0;
 var vault = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
-//var content = ["a", "a", "b", "b", "c", "c", "d", "d", "e", "e", "f", "f", "g", "g", "h", "h"];
 var audio = new Audio('snd/prox.wav');
 var audio2 = new Audio('snd/beverly_computer.wav');
+var content = [];
 
 
-function createBoard() {
 
-  var pairs = 8;
-  var content = [];
-
-  //this function creates the content for the cards
-  function createCards() {
-    console.log("creating cards");
-    for (i = 0; i < pairs; i++) {
+//this function creates the content for the cards
+function createCards() {
+  console.log("creating cards");
+  for (i = 0; i < pairs; i++) {
     var position = Math.floor(Math.random() * vault.length);
     var vaultLetter = vault.splice(position, 1);
     content.push(vaultLetter);
     content.push(vaultLetter);
     console.log(content.toString());
-    }
-
-
   }
-
-  createCards();
-
-
-  //this function adds the cards to the board
-  function addCards() {
-
-     for (i = 0; i < pairs*2; i++) {
-
-      var position = Math.floor(Math.random() * content.length);
-
-      var letter = content.splice(position, 1);
-
-      $("<div class=\"card " + letter + "\">" + letter + "</div>").appendTo(".board");
-
-    }
-
-  }
-
-  addCards();
+}
 
 
-  $(".card").click(function() {
-  $(this).addClass("flipped");
-  clickz++;
-  $(".counter").text("clicks:" +clickz);
-  pair.push($(this).text());
-  count++;
+function flip() {
+//change the background of the card
+$(this).addClass("flipped");
+//clear the mask
+$(this).find("div").addClass("clear");
+var identifier = $(this).data('value');
+pair.push(identifier);
+count++;
+clickz++;
+$(".counter").text("clicks:" +clickz);
 
+//check for match
+if (count == 2) {
 
-  if (count == 2) {
-
-    $(".card").addClass("noClick");
+  //prevent more cards from being clicked
+  $(".card").addClass("noClick");
   
-    if (pair[0] == pair[1]) {
-      //alert("match");
-      $("." + pair[0]).addClass("matched");
-      audio.play();
-      match++;
+  //match affirmative
+  if (pair[0] == pair[1]) {
+    //remove mask from matching pair
+    $("[data-value=" + identifier + "]").addClass("matched").empty();
+    audio.play();
+    match++;
     $(".matches").text("matches:" + match);
-      $(".card").removeClass("noClick");
+    $(".card").removeClass("noClick");
+    $(".card").removeClass("flipped");
+      //check to see if all matches are complete
       if (match == pairs) {
         $(".card").addClass("winner");
         audio2.play();
-
-  
       }
 
-    } else {
-      //alert("no match");
-      setTimeout(function() {
-        $(".card").removeClass("flipped");
-        $(".card").removeClass("noClick");
+    //
+    
+    } 
 
-      }, 1000);
+  //negative
+  else {
+    setTimeout(function() {
+      $(".card").removeClass("flipped");
+      $(".mask").removeClass("clear");
+      $(".card").removeClass("noClick");
+    }, 1000);
+  }
+
+  pair = [];
+  count = 0;
+
+}
+
+}
 
 
+function createBoard() {
+
+  createCards();
+
+    var gallery = "aliens";
+
+    //add to DOM
+    for (i = 0; i < pairs*2; i++) {
+      var position = Math.floor(Math.random() * content.length);
+      var letter = content.splice(position, 1);
+      $("<div class=\"card\" style=\"background-image:url(img/" + gallery + "/" + letter + ".png);\" data-value=" + letter + "><div class=\"mask\"></div></div>").appendTo(".board");
 
     }
 
-    pair = [];
-    count = 0;
-  
-  
-
-  }
-
-
-});
-
+  //attach listeners
+  $(".card").click(flip);
 
 
 };
+
 
 createBoard();
 
 function reset() {
   $(".board").empty();
+  content = [];
   count = 0;
   clickz = 0;
   match = 0;
@@ -113,37 +110,50 @@ function reset() {
 }
 
 $(document).ready(function(){
-    $(".reset").click(function(){
-        reset();
-    });
+  $(".reset").click(function(){
+    reset();
+  });
+
+
 });
 
 
 
-//$(".counter").click($(".card").css("fontFamily":"aliens"));
 
 
-$(".aliens").click(function(){
+function shuffle(array) {
+  var m = array.length, t, i;
 
-  $(".card").css("fontFamily","aliens");
- }); 
+  // While there remain elements to shuffle…
+  while (m) {
 
- $(".monsters").click(function(){
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
 
-  $(".card").css("fontFamily","monsters");
- }); 
+    // And swap it with the current element.
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
 
- 
- $(".space").click(function(){
+  return array;
+}
 
-  $(".card").css({"fontFamily":"space"});
- }); 
+function gameBot() {
 
- 
- 
- 
- 
- 
- 
- 
- 
+  setInterval(function(){ 
+    
+      var $all = $(".card");
+      console.log($all);
+      //this ignores the no click class settings and allows clicked items to be reclicked, shortcircuiting the whole thing
+      shuffle($all).slice(0,1).triggerHandler("click");
+
+   }, 2000);
+
+    
+
+}
+
+//gameBot();
+
+

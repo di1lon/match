@@ -118,7 +118,6 @@ background-color:white;
 }
 
 
-   
 .card {
   float: left;
   text-align: center;
@@ -126,29 +125,64 @@ background-color:white;
   height:13vw;
   color: transparent;
   font-size: 10vw;
-  background-color:#e1e1e1;
   cursor: pointer;
   transition-property:color;
   transition-duration:0.5s;
   margin:0.5vw;
   box-shadow: 5px 5px 5px #eee;
   border-radius:5px;
+  background-size:contain;
+  
+}
+
+.mask {
+  transition-property:background-color;
+  transition-duration:0.3s;
+    background-color:#e1e1e1;
+    height: 100%;
+    width: 100%;
+    border-radius:5px;
+}
+
+.clear {
+  transition-property:background-color;
+  transition-duration:0.5s;
+  background-color: transparent;
 }
 
 .flipped {
-  color: black;
   cursor: none;
   pointer-events: none;
-   transition-property:color;
-  transition-duration:0.5s;
+  outline:2px black solid;
 }
 
+.noClick {
+  pointer-events: none;
+  
+ }
+ 
 .matched {
-  background-color:aqua;
-  color: black;
+  background-color:greenyellow;
   pointer-events: none;
   transition-property:background-color;
   transition-duration:0.1s;
+}
+
+ .winner {
+  animation-name: spin;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    background-color:orange;
+ }
+
+.finale {
+  
+
+}
+
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
 }
 
 .board {
@@ -157,11 +191,7 @@ background-color:white;
   padding:50px;
 }
 
-.noClick {
-  pointer-events: none;
-  
- }
- 
+
 .counter, .matches {
 
 	display:block;
@@ -183,9 +213,7 @@ background-color:white;
 
 } 
 
- .winner {
-	background-color:GreenYellow;
- }
+
 
  .header a:hover{
  	background-color: greenyellow;
