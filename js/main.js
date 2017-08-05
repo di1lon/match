@@ -1,7 +1,30 @@
+//function to grab variables from URl
+
+function getQueryVariable(variable)
+{
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       console.log("false");
+       return(false);
+}
+
+
+var pairs = getQueryVariable("level");
+var gallery = getQueryVariable("type");
+
+//var pairs = 4;
+//var gallery = "aliens";
+
+
+
+
 var count = 0;
 var clickz = 0;
 var pair = [];
-var pairs = 4;
 var match = 0;
 var vault = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var audio = new Audio('snd/prox.wav');
@@ -32,7 +55,7 @@ var identifier = $(this).data('value');
 pair.push(identifier);
 count++;
 clickz++;
-$(".counter").text("clicks:" +clickz);
+$(".counter").text(clickz);
 
 //check for match
 if (count == 2) {
@@ -46,7 +69,7 @@ if (count == 2) {
     $("[data-value=" + identifier + "]").addClass("matched").empty();
     audio.play();
     match++;
-    $(".matches").text("matches:" + match);
+    $(".matches").text(match);
     $(".card").removeClass("noClick");
     $(".card").removeClass("flipped");
       //check to see if all matches are complete
@@ -80,7 +103,7 @@ function createBoard() {
 
   createCards();
 
-    var gallery = "aliens";
+    
 
     //add to DOM
     for (i = 0; i < pairs*2; i++) {
@@ -101,6 +124,7 @@ createBoard();
 
 function reset() {
   $(".board").empty();
+  vault = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
   content = [];
   count = 0;
   clickz = 0;
